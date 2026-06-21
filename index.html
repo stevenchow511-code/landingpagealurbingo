@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<link rel="icon" type="image/png" href="https://i.ibb.co/39JPHZ0J/image.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Event Spesial Hari Ini</title>
+
+<style>
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.8);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+}
+.popup-box{
+    background:linear-gradient(135deg,#111827,#1f2937);
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    animation:popIn 0.4s ease;
+}
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.85);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    opacity:1;
+    transition:opacity 0.5s ease;
+}
+/* class untuk fade out */
+.popup.hide{
+    opacity:0;
+    pointer-events:none;
+}
+body{
+    margin:0;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:url('https://i.ibb.co.com/pVW2bsw/image.png');
+    background-size:cover;
+    background-position:center;
+
+    font-family:Arial;
+    overflow:hidden;
+}
+
+/* FLOATING ICON */
+.floating span{
+    position:absolute;
+    top:-10%;
+    font-size:20px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(0);
+    }
+
+    100%{
+        transform:translateY(120vh);
+    }
+}
+
+/* CONTAINER */
+.container{
+    width:auto%; 
+    max-width:400px;
+
+    padding:30px;
+    color:white;
+
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+
+    border-radius:15px;
+    text-align:center;
+
+    z-index:2;
+}
+
+/* TITLE */
+.title{
+    font-size:24px;
+    font-weight:bold;
+    margin-top:10px;
+
+    background:linear-gradient(90deg,#facc15,#f97316);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* TIMER */
+.timer{
+    font-size:22px;
+    margin:15px 0;
+    padding:10px;
+
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+
+    animation:glow 2s infinite;
+}
+
+@keyframes glow{
+
+    0%{
+        box-shadow:0 0 5px #facc15;
+    }
+
+    50%{
+        box-shadow:0 0 20px #f97316;
+    }
+
+    100%{
+        box-shadow:0 0 5px #facc15;
+    }
+}
+
+/* IMAGE */
+.hero img{
+    width:100%;
+    border-radius:12px;
+    margin:15px 0;
+}
+
+/* BUTTON */
+.btn{
+    display:block;
+    width:100%;
+
+    padding:15px;
+    margin:10px 0;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:linear-gradient(90deg,#facc15,#f97316);
+    color:black;
+
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* BADGE */
+.badge{
+    background:red;
+
+    padding:5px 10px;
+    border-radius:20px;
+
+    font-size:12px;
+
+    display:inline-block;
+    margin-top:10px;
+}
+
+/* RESPONSIVE HP */
+@media(max-width:480px){
+
+    .container{
+        padding:20px;
+    }
+
+    .title{
+        font-size:20px;
+    }
+
+    .timer{
+        font-size:18px;
+    }
+
+    .btn{
+        font-size:14px;
+        padding:12px;
+    }
+
+}
+
+</style>
+
+</head>
+<div id="popup" class="popup">
+    <div class="popup-box">
+        <h2>🎉 Selamat Datang</h2>
+        <p>Ikutin dan Tekan tombol di bawah untuk masuk ke event</p>
+        <p>1.Daftar New Akun</p>
+        <p>2.Putar Hadiah</p>
+        <p>3.Ambil Hadiah</p>
+        <button class="btn" onclick="closePopup()">
+            MASUK SEKARANG
+        </button>
+    </div>
+</div>
+<div id="loginPopup" class="popup">
+  <div class="popup-box">
+
+    <h2>🔐 Verifikasi ID</h2>
+    <p>Masukkan ID untuk melanjutkan</p>
+
+    <input id="idInput" type="text" placeholder="Masukkan ID">
+
+    <button class="btn" onclick="enterSite()">
+      MASUK
+    </button>
+
+  </div>
+</div>
+<body>
+
+<!-- FLOATING -->
+<div class="floating">
+    <span style="left:10%;animation-duration:15s;">🔥</span>
+    <span style="left:30%;animation-duration:18s;">🔥</span>
+    <span style="left:50%;animation-duration:20s;">🔥</span>
+    <span style="left:70%;animation-duration:17s;">🔥</span>
+    <span style="left:90%;animation-duration:22s;">🔥</span>
+</div>
+
+<div class="container">
+
+    <div class="badge">
+        EVENT TERBATAS
+    </div>
+
+    <div class="title">
+        BAGI BAGI SALDO HINGGA 2 JT 🚀
+    </div>
+
+    <div class="timer" id="countdown">
+        Loading...
+    </div>
+
+    <div class="hero">
+        <img src="https://i.ibb.co.com/5XLdpqbq/661724106-122123928537193193-125506911605243606-n.jpg">
+    </div>
+
+    <button class="btn" onclick="window.open('https://alurinaja.com/')">
+        🔥 LOGIN DISINI
+        </button>
+    <button class="btn" onclick="window.open('https://alurinaja.com/m/promosi')">
+      🎯 PUTAR HADIAH
+      </button>
+    <button class="btn" onclick="alert('Kasih ID Di Chat & Bukti Hadiah ')">
+        🎁 AMBIL HADIAH
+    </button>
+    
+
+</div>
+
+<script>
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+window.onload = function(){
+    document.getElementById("popup").style.display = "flex";
+}
+// REDIRECT
+function goLink(){
+    window.location.href = "https://alurinaja.com/";
+}
+function enterSite(){
+    let popup = document.getElementById("loginPopup");
+
+    // tambah class fade out
+    popup.classList.add("hide");
+
+    // setelah animasi selesai, sembunyikan total
+    setTimeout(function(){
+        popup.style.display = "none";
+    },500);
+}
+// COUNTDOWN
+var time = 3600;
+var timer = setInterval(updateTimer, 1000);
+function updateTimer(){
+
+    var hours = Math.floor(time / 3600);
+    var minutes = Math.floor((time % 3600) / 60);
+    var seconds = time % 60;
+
+    document.getElementById("countdown").innerHTML =
+        hours + " : " + minutes + " : " + seconds;
+
+    if(time > 0){
+        time--;
+    }else{
+        document.getElementById("countdown").innerHTML =
+            "WAKTU HABIS!";
+    clearInterval(timer);
+    }
+
+}
+
+setInterval(updateTimer,1000);
+
+</script>
+
+</body>
+</html>
